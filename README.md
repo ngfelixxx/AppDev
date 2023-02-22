@@ -8,10 +8,10 @@ How to set up the environment:
 7. Enjoy! and happy coding :)
 
 Code Tutorials:
-Agile & Trello:
-UML State Machine: 
-HTML & CSS: 
-Vue.js: 
-Brython: 
-JSON: 
-Testing: 
+1. Agile & Trello:
+2. UML State Machine: 
+3. HTML & CSS: 
+4. Vue.js: 
+5. Brython: 
+6. JSON: 
+7. Testing: 
