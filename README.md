@@ -7,4 +7,4 @@ How to set up the environment:
 6. Right click on the index.html file and click "Open with Live Server" 
 7. Enjoy! and happy coding :)
 
-Code Tutorial:   
+Code Tutorial: https://youtu.be/eJLpjodj8gU
