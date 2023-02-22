@@ -72,7 +72,7 @@ h2{
 }
 
 /*Brython*/
-#add-btn, #remove-btn, #pass-btn {
+#add-btn, #remove-btn, #nick-btn {
   cursor: pointer;
   display: inline-block;
   background: #333;
@@ -83,7 +83,11 @@ h2{
   margin: 0 10px;
 }
 
-.button-container, #password-container {
+#nick-btn, #nickname {
+  position:relative; top:20px;
+}
+
+.button-container, #nickname-container {
   text-align: center;
 }
 
