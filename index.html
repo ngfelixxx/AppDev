@@ -70,24 +70,24 @@
       document['remove-btn'].bind('click', remove_item)           #Same here 
   </script>
   <script type="text/python" id="script3">
-    from browser import document, ajax               #To access DOM we need to import the modules from our browser module 
+    from browser import document, ajax                            #To access DOM we need to import the modules from our browser module 
 
     url = 'https://random-word-api.herokuapp.com/word?number=1' 
 
     def on_complete(req): 
-        import json                                  #Allow python to read JSON
-        data = json.loads(req.responseText)          #Load the JSON data from the response into a variable
-        password = data[0]                         #Take the value from the key:value pair 
-        document['password'].text = password                 #Assign it to the document text which is the HTML text content
+        import json                                               #Allow python to read JSON
+        data = json.loads(req.responseText)                       #Load the JSON data from the response into a variable
+        password = data[0]                                        #Take the value from the key:value pair 
+        document['password'].text = password                      #Assign it to the document text which is the HTML text content
 
     def get_password(e):
-        req = ajax.ajax()                            #This is an instance of ajax which is used to make HTTP request
-        req.open('GET', url, True)                   #We make a GET request from the URL
-        req.bind('complete', on_complete)            #The event will trigger the call of a function 
-        document['password'].text = 'Loading...'         #While waiting for the API request to be complete this is the text
-        req.send()                                   #Sends the request to the URL
+        req = ajax.ajax()                                         #This is an instance of ajax which is used to make HTTP request
+        req.open('GET', url, True)                                #We make a GET request from the URL
+        req.bind('complete', on_complete)                         #The event will trigger the call of a function 
+        document['password'].text = 'Loading...'                  #While waiting for the API request to be complete this is the text
+        req.send()                                                #Sends the request to the URL
 
-    document['pass-btn'].bind('click', get_password)     #The 'joke-btn' element from the HTML will receive a click event that will trigger the 'get_joke' function 
+    document['pass-btn'].bind('click', get_password)              #The 'joke-btn' element from the HTML will receive a click event that will trigger the 'get_joke' function 
 </script>
 <!--Body End-->
   <script src="app.js"></script>
