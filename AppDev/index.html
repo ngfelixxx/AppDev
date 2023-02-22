@@ -1,0 +1,95 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Learning Vue</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/vue@3.0.0"></script> <!--VueJS--> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython.js" integrity="sha256-rA89wPrTJJQFWJaZveKW8jpdmC3t5F9rRkPyBjz8G04=" crossorigin="anonymous"></script> <!--Brython-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/brython/3.8.8/brython_stdlib.js" integrity="sha256-Gnrw9tIjrsXcZSCh/wos5Jrpn0bNVNFJuNJI9d71TDs=" crossorigin="anonymous"></script> <!--Brython-->
+</head>
+<body onload="brython()"> <!--enable Brython-->
+  <div id="app"> <!--Encapsulation -->
+    <!--Login-->
+    <div v-show="showLogin"> 
+      <h2>Welcome: <span id="item"></span></h2><br> 
+      <input type="text" id="item-input" placeholder="Whats your name?">
+      <div id="button-container" class="button-container">
+        <button id="add-btn">Add</button>
+        <button id="remove-btn">Remove</button>
+      </div> 
+      <form id="login">
+        <input v-model="username" type="text" id="Uname" placeholder="Username" required> <!--v-model links to JS-->
+        <br><br>    
+        <input v-model="password" type="text" id="Pass" placeholder="Password" required>
+        <br><br>
+        <div id="password-container"> 
+          <button id="pass-btn">Recommend password</button>
+          <div id="password" class="card">Click button to recommend a password</div>
+        </div>
+        <input type="login" name="log" id="log" value="Login" @click.prevent="Login">
+      </form> 
+    </div>
+
+    <!--Main-->
+    <div v-show="showBooks"> <!--show/hide-->
+      <ul>
+        <li v-for="book in books" :class="{ fav: book.isFav }" @click="toggleFav(book)"> <!--for loop-->
+          <img :src="book.img" :alt="book.title"> <!--object property-->
+          <h3>{{ book.title }}</h3>
+          <p>{{ book.author }}</p>
+        </li>
+      </ul>
+      <p>Your favorite books:</p>
+      <ul>
+        <li v-for="book in filteredBooks">{{ book.desc }}</li> <!--Iterate-->
+      </ul>
+    </div>
+  <!--App End-->
+  </div>
+
+  <!--Brython-->
+  <script type="text/python" id="script6">
+      from browser import document, html, window, console          
+
+      storage = window.localStorage                               #This is the local storage of the browser window
+
+      if storage.getItem('item'):                                 #If there is an item stored in the local storage with the key 'item' 
+          document['item'] <= storage.getItem('item')             #Then we set the HTML text content of the element with the HTML id 'item' to the value that is stored in the local storage 
+
+      def add_item(e):                                            #Function takes in an event as parameter
+          item = document['item-input'].value                     #Assigns the value of the element with id 'item-input' 
+          storage.setItem('item', item)                           #After retriving the value we map it to the element with key 'item' in the local storage
+          document['item'].textContent = item                     #The element with the HTML id 'item' gets it value set to the newly defined text determined above
+
+      def remove_item(e):
+          storage.removeItem('item')                              #We remove the element with key 'item' from our local storage
+          document['item'].textContent = ''                       #We then set the text content of the element with the HTML id 'item' to be nothing
+
+      document['add-btn'].bind('click', add_item)                 #In the event of a click of that button we trigger the function 
+      document['remove-btn'].bind('click', remove_item)           #Same here 
+  </script>
+  <script type="text/python" id="script3">
+    from browser import document, ajax               #To access DOM we need to import the modules from our browser module 
+
+    url = 'https://random-word-api.herokuapp.com/word?number=1' 
+
+    def on_complete(req): 
+        import json                                  #Allow python to read JSON
+        data = json.loads(req.responseText)          #Load the JSON data from the response into a variable
+        password = data[0]                         #Take the value from the key:value pair 
+        document['password'].text = password                 #Assign it to the document text which is the HTML text content
+
+    def get_password(e):
+        req = ajax.ajax()                            #This is an instance of ajax which is used to make HTTP request
+        req.open('GET', url, True)                   #We make a GET request from the URL
+        req.bind('complete', on_complete)            #The event will trigger the call of a function 
+        document['password'].text = 'Loading...'         #While waiting for the API request to be complete this is the text
+        req.send()                                   #Sends the request to the URL
+
+    document['pass-btn'].bind('click', get_password)     #The 'joke-btn' element from the HTML will receive a click event that will trigger the 'get_joke' function 
+</script>
+<!--Body End-->
+  <script src="app.js"></script>
+</body>
+</html>  
