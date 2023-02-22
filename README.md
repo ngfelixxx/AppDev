@@ -7,11 +7,4 @@ How to set up the environment:
 6. Right click on the index.html file and click "Open with Live Server" 
 7. Enjoy! and happy coding :)
 
-Code Tutorials:
-1. Agile & Trello:
-2. UML State Machine: 
-3. HTML & CSS: 
-4. Vue.js: 
-5. Brython: 
-6. JSON: 
-7. Demonstration: 
+Code Tutorial:   
