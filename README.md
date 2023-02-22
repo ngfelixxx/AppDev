@@ -14,4 +14,4 @@ Code Tutorials:
 4. Vue.js: 
 5. Brython: 
 6. JSON: 
-7. Testing: 
+7. Demonstration: 
