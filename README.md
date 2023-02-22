@@ -1,4 +1,4 @@
-Steps to set up Environment:
+How to set up the environment:
 1. Open VScode.
 2. Download "Live Server" extension to run the code in the browser. 
 3. Download "Vetur" extension to assist in coding with Vue.js. 
@@ -6,3 +6,12 @@ Steps to set up Environment:
 5. Open the downloaded folder in VScode. 
 6. Right click on the index.html file and click "Open with Live Server" 
 7. Enjoy! and happy coding :)
+
+Code Tutorials:
+Agile & Trello:
+UML State Machine: 
+HTML & CSS: 
+Vue.js: 
+Brython: 
+JSON: 
+Testing: 
